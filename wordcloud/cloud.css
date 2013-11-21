@@ -1,0 +1,50 @@
+div#wordcloud {
+  font-family: "Helvetica", "Arial", sans-serif;
+  color: #09f;
+  overflow: hidden;
+  position: relative;
+}
+
+div#wordcloud span {
+  padding: 0;
+}
+div#wordcloud span.w10 {
+  font-size: 54px;
+  color: #013E7F;
+}
+div#wordcloud span.w9 {
+  font-size: 50px;
+  color: #013E7F;
+}
+div#wordcloud span.w8 {
+  font-size: 44px;
+  color: #013E7F;
+}
+div#wordcloud span.w7 {
+  font-size: 40px;
+  color: #F68026;
+}
+div#wordcloud span.w6 {
+  font-size: 34px;
+  color: #6D79B5;
+}
+div#wordcloud span.w5 {
+  font-size: 30px;
+  color: #FCC87F;
+}
+div#wordcloud span.w4 {
+  font-size: 24px;
+  color: #92B3DC;
+}
+div#wordcloud span.w3 {
+  font-size: 20px;
+  color: #FCC87F;
+}
+div#wordcloud span.w2 {
+  font-size: 14px;
+  color: #A0CFED;
+}
+div#wordcloud span.w1 {
+  font-size: 10px;
+  color: #FCC87F;
+}
