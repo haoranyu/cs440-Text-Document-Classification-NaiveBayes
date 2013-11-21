@@ -12,11 +12,19 @@ int cmp(dict a, dict b)  {
 
 
 
-int main() {
+int main(int argc, char* argv[]) {
+
 	NBC nbc;
 
-	ifstream train("data/8.trainingdata.txt");
-	ifstream test("data/8.testingdata.txt");
+	if (argc != 2 || ){
+		cout<< "Use . or .nostop. as the para" << endl;
+		exit(1);
+	}
+
+	string trainFile = "data/8.trainingdata"+(string)argv[1]+"txt";
+	string testFile = "data/8.testingdata"+(string)argv[1]+"txt";
+	ifstream train(trainFile.c_str());
+	ifstream test(testFile.c_str());
 
 	for(int i = 0; i < 8; i++)
 		nbc.numw_inclass[i] = 0;
