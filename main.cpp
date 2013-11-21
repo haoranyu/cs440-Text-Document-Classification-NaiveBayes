@@ -16,15 +16,18 @@ int main(int argc, char* argv[]) {
 
 	NBC nbc;
 
-	if (argc != 2 || ){
+	if (argc != 2){
 		cout<< "Use . or .nostop. as the para" << endl;
 		exit(1);
 	}
 
 	string trainFile = "data/8.trainingdata"+(string)argv[1]+"txt";
 	string testFile = "data/8.testingdata"+(string)argv[1]+"txt";
+//	ofstream classout("data.cloud/word.txt");
 	ifstream train(trainFile.c_str());
 	ifstream test(testFile.c_str());
+
+	
 
 	for(int i = 0; i < 8; i++)
 		nbc.numw_inclass[i] = 0;
@@ -126,4 +129,19 @@ int main(int argc, char* argv[]) {
 			break;
 		}
 	}
+/*
+	for(int j = 0; j < 8; j++){
+		sortAccrodingto = j;
+		classout<<"The top words with the highest likelihood in class "<<j<<" are:"<<endl;
+		dictList.sort(cmp); 
+		for (list<dict>::iterator it=dictList.begin(); it!=dictList.end(); ++it){
+			classout<<it->word<<":"<<it->likelihood[sortAccrodingto]<<endl;
+		}
+	}
+*/
+
+
+
+
+	cout<<"The size of test data is "<<nbc.testset.size()<<endl;
 }
