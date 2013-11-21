@@ -1,5 +1,6 @@
 #include "NBC.h"
 
+
 void NBC::Train( vector< vector<string> > & traindata, vector<int> & ltrain)
 {
 	int train_size = ltrain.size();

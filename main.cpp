@@ -1,5 +1,15 @@
 #include "NBC.h"
 //#include <boost/algorithm/string.hpp>
+struct dict {  
+    string word;  
+    double likelihood[NUM_CLASS];  
+};  
+int sortAccrodingto = 0;
+
+int cmp(dict a, dict b)  {  
+    return a.likelihood[sortAccrodingto] > b.likelihood[sortAccrodingto];  
+}  
+
 
 
 int main() {
@@ -86,4 +96,26 @@ int main() {
 	nbc.Train(nbc.trainset, nbc.ltrain);
 	nbc.Test(nbc.testset);
 
+	list<dict> dictList;
+	dict tmp;
+	for (map<string,vector<double> >::iterator it = nbc.pTable.begin(); it!=nbc.pTable.end(); ++it){
+        tmp.word = it->first;
+		for(int i = 0; i < NUM_CLASS; i++){
+			tmp.likelihood[i] = (it->second).at(i);  
+			
+		}
+		dictList.push_back(tmp);
+    }
+
+	for(int j = 0; j < 8; j++){
+		sortAccrodingto = j;
+		cout<<"The top 20 words with the highest likelihood in class "<<j<<" are:"<<endl;
+		dictList.sort(cmp); 
+		int ct = 0;
+		for (list<dict>::iterator it=dictList.begin(); it!=dictList.end(); ++it){
+			cout<<it->word<<":"<<it->likelihood[sortAccrodingto]<<endl;
+			if(ct < 19) {ct++; continue;}
+			break;
+		}
+	}
 }

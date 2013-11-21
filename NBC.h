@@ -10,6 +10,7 @@
 #include <iostream>
 #include <iomanip>	
 #include <map>
+#include <list>
 using namespace std;
 #define NUM_CLASS 8
 
