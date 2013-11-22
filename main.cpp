@@ -4,12 +4,20 @@ struct dict {
     string word;  
     double likelihood[NUM_CLASS];  
 };  
+
+struct dict_h {  
+    string word;  
+    double logodd;  
+};  
+
 int sortAccrodingto = 0;
 
 int cmp(dict a, dict b)  {  
     return a.likelihood[sortAccrodingto] > b.likelihood[sortAccrodingto];  
 }  
-
+int cmp_h(dict_h a, dict_h b)  {  
+    return a.logodd > b.logodd;  
+}  
 
 
 int main(int argc, char* argv[]) {
@@ -113,7 +121,6 @@ int main(int argc, char* argv[]) {
         tmp.word = it->first;
 		for(int i = 0; i < NUM_CLASS; i++){
 			tmp.likelihood[i] = (it->second).at(i);  
-			
 		}
 		dictList.push_back(tmp);
     }
@@ -130,6 +137,87 @@ int main(int argc, char* argv[]) {
 		}
 	}
 
+//special code follows. very bad code . just for deadline
+{
+	list<dict_h> dicthList;
+	dict_h tmph;
+	int ct = 0;
+	for (map<string,double >::iterator it = nbc.logodds1.begin(); it!=nbc.logodds1.end(); ++it){
+        tmph.word = it->first;
+		for(int i = 0; i < NUM_CLASS; i++){
+			tmph.logodd = it->second;  
+		}
+		dicthList.push_back(tmph);
+    }
+	cout<<"The top 20 words with the highest log-odd ratio for <5, 1> is:"<<endl;
+	dicthList.sort(cmp_h);
+	for (list<dict_h>::iterator it=dicthList.begin(); it!=dicthList.end(); ++it){
+		cout<<it->word<<":"<<it->logodd<<endl;
+		if(ct < 19) {ct++; continue;}
+		break;
+	}
+}
+{
+	list<dict_h> dicthList;
+	dict_h tmph;
+	int ct = 0;
+	for (map<string,double >::iterator it = nbc.logodds2.begin(); it!=nbc.logodds2.end(); ++it){
+        tmph.word = it->first;
+		for(int i = 0; i < NUM_CLASS; i++){
+			tmph.logodd = it->second;  
+		}
+		dicthList.push_back(tmph);
+    }
+	cout<<"The top 20 words with the highest log-odd ratio for <5, 4> is:"<<endl;
+	dicthList.sort(cmp_h);
+	for (list<dict_h>::iterator it=dicthList.begin(); it!=dicthList.end(); ++it){
+		cout<<it->word<<":"<<it->logodd<<endl;
+		if(ct < 19) {ct++; continue;}
+		break;
+	}
+}
+{
+	list<dict_h> dicthList;
+	dict_h tmph;
+	int ct = 0;
+	for (map<string,double >::iterator it = nbc.logodds3.begin(); it!=nbc.logodds3.end(); ++it){
+        tmph.word = it->first;
+		for(int i = 0; i < NUM_CLASS; i++){
+			tmph.logodd = it->second;  
+		}
+		dicthList.push_back(tmph);
+    }
+	cout<<"The top 20 words with the highest log-odd ratio for <0, 4> is:"<<endl;
+	dicthList.sort(cmp_h);
+	for (list<dict_h>::iterator it=dicthList.begin(); it!=dicthList.end(); ++it){
+		cout<<it->word<<":"<<it->logodd<<endl;
+		if(ct < 19) {ct++; continue;}
+		break;
+	}
+}
+{
+	list<dict_h> dicthList;
+	dict_h tmph;
+	int ct = 0;
+	for (map<string,double >::iterator it = nbc.logodds4.begin(); it!=nbc.logodds4.end(); ++it){
+        tmph.word = it->first;
+		for(int i = 0; i < NUM_CLASS; i++){
+			tmph.logodd = it->second;  
+		}
+		dicthList.push_back(tmph);
+    }
+	cout<<"The top 20 words with the highest log-odd ratio for <1, 7> is:"<<endl;
+	dicthList.sort(cmp_h);
+	for (list<dict_h>::iterator it=dicthList.begin(); it!=dicthList.end(); ++it){
+		cout<<it->word<<":"<<it->logodd<<endl;
+		if(ct < 19) {ct++; continue;}
+		break;
+	}
+}
+
+//special ends
+
+/*
 	for(int j = 0; j < 8; j++){
 		sortAccrodingto = j;
 		classout<<"The top words with the highest likelihood in class "<<j<<" are:"<<endl;
@@ -138,7 +226,7 @@ int main(int argc, char* argv[]) {
 			classout<<it->word<<":"<<it->likelihood[sortAccrodingto]<<endl;
 		}
 	}
-
+*/
 
 
 

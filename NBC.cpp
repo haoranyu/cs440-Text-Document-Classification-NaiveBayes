@@ -43,6 +43,11 @@ void NBC::Test( vector< vector<string> > & testdata) {
 	int hit_count[8] = {0,0,0,0,0,0,0,0};
 	int real_count[8] = {0,0,0,0,0,0,0,0};
 	int confusion_matrix[8][8] = {{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0}};
+
+//special code follows. very bad code . just for deadline
+	double confusion_matrix2[8][8] = {{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0},{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0}};
+//special ends
+	
 	for (int s = 0; s < test_size; s++) {
 		int plabel = test(testdata[s]);
 		this->pltest.push_back(plabel);
@@ -51,10 +56,20 @@ void NBC::Test( vector< vector<string> > & testdata) {
 			hit_count[ltest.at(s)]++;
 		}
 		confusion_matrix[ltest.at(s)][plabel]++;
+		confusion_matrix2[ltest.at(s)][plabel] += 1.0;
 	}
 	
 	for(int i = 0; i < 8; i ++){
 		cout<<"The classification rate for class "<<i<<" is "<<(double)hit_count[i]/(double)real_count[i]<<endl;
+	}
+
+	int rowSum[8] = {0,0,0,0,0,0,0,0};
+
+	for(int i = 0; i < 8; i ++){
+		for(int j = 0; j < 8; j ++){
+			rowSum[i] += confusion_matrix[i][j];
+		}
+		cout<<endl;
 	}
 
 	cout<<"The confusion matrix:"<<endl;
@@ -64,6 +79,22 @@ void NBC::Test( vector< vector<string> > & testdata) {
 		}
 		cout<<endl;
 	}
+
+//special code follows. very bad code . just for deadline
+	for(int i = 0; i < 8; i ++){
+		for(int j = 0; j < 8; j ++){
+			confusion_matrix2[i][j] = (double)confusion_matrix[i][j]/(double)rowSum[i];
+		}
+		cout<<endl;
+	}
+
+	for (std::map<string, vector<double> >::iterator it = pTable.begin(); it != pTable.end(); ++it){
+		logodds1.insert ( std::pair<string, double >(it->first, log(it->second.at(1)) - log(it->second.at(5))  ));
+		logodds2.insert ( std::pair<string, double >(it->first, log(it->second.at(4)) - log(it->second.at(5))  ));
+		logodds3.insert ( std::pair<string, double >(it->first, log(it->second.at(4)) - log(it->second.at(0))  ));
+		logodds4.insert ( std::pair<string, double >(it->first, log(it->second.at(7)) - log(it->second.at(1))  ));
+	}
+//special ends
 }
 
 int NBC::test(const vector<string> &sample) {

@@ -28,6 +28,12 @@ class NBC
 		vector<int> ltrain, ltest, pltest;
 		map<string, vector<double> > pTable;
 		map<string, vector<int> > features;
+	
+		map<string, double > logodds1;
+		map<string, double > logodds2;
+		map<string, double > logodds3;
+		map<string, double > logodds4;
+		
 		double prior[NUM_CLASS];
 		long 	numw_inclass[NUM_CLASS];
 	
