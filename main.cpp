@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
 
 	string trainFile = "data/8.trainingdata"+(string)argv[1]+"txt";
 	string testFile = "data/8.testingdata"+(string)argv[1]+"txt";
-//	ofstream classout("data.cloud/word.txt");
+	ofstream classout("word.txt");
 	ifstream train(trainFile.c_str());
 	ifstream test(testFile.c_str());
 
@@ -129,7 +129,7 @@ int main(int argc, char* argv[]) {
 			break;
 		}
 	}
-/*
+
 	for(int j = 0; j < 8; j++){
 		sortAccrodingto = j;
 		classout<<"The top words with the highest likelihood in class "<<j<<" are:"<<endl;
@@ -138,7 +138,7 @@ int main(int argc, char* argv[]) {
 			classout<<it->word<<":"<<it->likelihood[sortAccrodingto]<<endl;
 		}
 	}
-*/
+
 
 
 
