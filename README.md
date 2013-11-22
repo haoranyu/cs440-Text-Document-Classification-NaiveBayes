@@ -12,5 +12,10 @@ Futher
 ==================================
 We removed stop words and regenerated the 8.trainingdata.nostop.txt and 8.testingdata.nostop.txt files for training and testing. And redo the experiment of part 2. The overall classification rate enhanced to 242(hit) / 264(total) = 0.91667
 
-Word Cloud
+Words Cloud
 ==================================
+We also visualized the most popular word with the largest likelihood in each class. 
+
+Team & Copyright
+==================================
+COPYRIGHT CS440 Group @ University of Illinois at Urbana-Champaign By Haoran Yu, Le Wang and Tao Feng
